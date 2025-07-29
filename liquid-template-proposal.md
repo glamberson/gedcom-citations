@@ -205,7 +205,7 @@ template.resource_limits = {
 
 ## Sample Converter
 
-A simple Python converter for basic patterns:
+A simplified Python converter for basic patterns (production converters should handle edge cases like nested braces, escaped quotes, and mixed patterns):
 
 ```python
 import re
@@ -224,6 +224,8 @@ def bash_to_liquid(template):
     
     return template
 ```
+
+Note: This handles common cases but doesn't address escaping, nested patterns, or edge cases. A full converter would need more robust parsing.
 
 ## Conclusion
 
