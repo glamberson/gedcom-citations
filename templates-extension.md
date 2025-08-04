@@ -147,13 +147,13 @@ using a syntax like `=ToUpper("McKinley")` with a number of arguments defined by
 
 It also supports a set of expressions, such as:
 
-* `<({code1}, {code2} and {code3})>` where the `(` prefix and `)` suffix are output if any of the codes are
+- `<({code1}, {code2} and {code3})>` where the `(` prefix and `)` suffix are output if any of the codes are
   non-empty and the `, ` and ` and ` separators are displayed if any expression to the left is non-empty and
   the one immediately to the right is non-empty, so you get `(apple, pear)` if code1=apple, code2=pear, and code3 is
   blank.
-* nested angle-bracket expressions
-* `<{code1}|EMPTY!>` to display "EMPTY!" if code1 is blank
-* `<{code1}|{code2}|{code3}>` to display alternatives if a code is blank, with a variable number of alternatives
+- nested angle-bracket expressions
+- `<{code1}|EMPTY!>` to display "EMPTY!" if code1 is blank
+- `<{code1}|{code2}|{code3}>` to display alternatives if a code is blank, with a variable number of alternatives
   allowed.
 
 In top level (not within angle brackets) expressions, some characters are treated specially, including
@@ -368,10 +368,10 @@ Source Template
 
 This extension adds the following substructure to an existing `SOUR` structure:
 
-* A `_TPLT` substructure whose payload is the URI of a source template.
-* Multiple `_FIEL` substructures of the `_TPLT` that provide values of citation elements for the master source as specified by the source template, if any.
-* `_FIEL` substructures of a `g7:SOUR` `g7:PAGE` that provide values of citation elements for the source details as specified by the source template, if any.
-* A `SOUR` substructure of a `_TPLT` that provides a cross-reference to a collection that the source is contained in.
+- A `_TPLT` substructure whose payload is the URI of a source template.
+- Multiple `_FIEL` substructures of the `_TPLT` that provide values of citation elements for the master source as specified by the source template, if any.
+- `_FIEL` substructures of a `g7:SOUR` `g7:PAGE` that provide values of citation elements for the source details as specified by the source template, if any.
+- A `SOUR` substructure of a `_TPLT` that provides a cross-reference to a collection that the source is contained in.
 
 ### Citation Element Values
 
