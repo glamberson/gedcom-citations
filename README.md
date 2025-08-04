@@ -15,7 +15,7 @@ The following extensions are proposed for discussion:
 
 * [Source Derivation Extension](source-derivation-extension.md)
 * [Source Stewardship Extension](source-stewardship-extension.md)
-* [Source Templates Extension](templates-extension.md)
+* [Source Templates Extension](templates-extension.md) - Now uses [Liquid template syntax](https://shopify.github.io/liquid/) for safer, more portable template patterns
 
 All proposed extensions use [documented extension tags](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#extension-tags).  If they later become incorporated into the FamilySearch GEDCOM standard,
 standard tags will be defined at that time.
