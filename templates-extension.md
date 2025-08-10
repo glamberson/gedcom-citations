@@ -496,6 +496,10 @@ The following [JSON schema](https://datatracker.ietf.org/doc/html/draft-bhutton-
             "type": "string",
             "description": "Template pattern that specifies how to construct an abbreviated title for the master source. The abbreviated title constructed can be displayed in a source list when the source record does not have an ABBR structure. (An implementation might store the abbreviated title constructed in an ABBR structure, but this is not required.) The payload must not contain variables defined in the dfields array, but may contain variables defined in the sfields array, and if a collection is specified then it may also use the variable \"CollectionAbbr\" which will expand to the collection's abbreviated title."
           },
+          "titl": {
+            "type": "string",
+            "description": "Template pattern that specifies how to construct a TITL payload. The payload must not contain variables defined in the dfields array but may contain variables defined in the sfields array."
+          },
           "auth": {
             "type": "string",
             "description": "Template pattern for formatting an AUTH using the given style guide."
@@ -525,6 +529,7 @@ The following [JSON schema](https://datatracker.ietf.org/doc/html/draft-bhutton-
             "description": "Template pattern for formatting a short subsequent note using the given style guide."
           }
         },
+        "required": ["name", "titl", "scite"],
         "additionalProperties": false
       }
     },
