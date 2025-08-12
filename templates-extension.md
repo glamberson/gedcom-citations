@@ -309,15 +309,15 @@ Source Templates allow applications to give users a set of data to capture for a
 (such as a grave marker, obituary, will, etc.) and how such data should be formatted in a footnote citation.
 Source templates might be published as standard source templates or might be specific to a given application.
 
-The URI for this extension's `_TPLT` tag is `https://gedcom.io/terms/v7/_TPLT`.
+The URI for this extension's `_TPLT` tag is `ext:_TPLT`.
 
 The `_TPLT` structure is used as a substructure of the `SOUR` structure as follows:
 
 ```
 n SOUR @XREF:SOUR@                          {1:1}  g7:record-SOUR
   +1 <<SOUR_DETAIL>>                        {0:1}
-     +2 _TPLT <URI>                         {0:1}  https://gedcom.io/terms/v7/_TPLT
-        +3 _FIEL <Text>                     {0:M}  https://gedcom.io/terms/v7/_FIEL
+     +2 _TPLT <URI>                         {0:1}  ext:_TPLT
+        +3 _FIEL <Text>                     {0:M}  ext:_FIEL
            +4 TEXT <Text>                   {0:1}  g7:TEXT
               +5 MIME <MediaType>           {0:1}  g7:MIME
               +5 LANG <Language>            {0:1}  g7:LANG
@@ -339,7 +339,7 @@ substructure of the `SOUR` structure:
 ```
 n SOUR @XREF:SOUR@                          {1:1}  g7:record-SOUR
   +1 <<SOUR_DETAIL>>                        {0:1}
-     +2 _TPLT <URI>                         {0:1}  https://gedcom.io/terms/v7/_TPLT
+     +2 _TPLT <URI>                         {0:1}  ext:_TPLT
         +3 SOUR @<XREF:SOUR>@               {0:1}  g7:SOUR
 ```
 
@@ -609,7 +609,7 @@ The following examples show the YAML text, which can be placed into `.yaml` file
 
 ### Grave Marker Template
 
-The Grave Marker example is taken from the monument example at *Evidence Explained*, page 247.
+The Grave Marker example is taken from the monument example at *Evidence Explained*, pages 246-247.
 
 #### Grave Marker YAML
 
@@ -630,7 +630,7 @@ sfields:
     label: Cemetery
     required: true
   - variable: Location
-    label: Cemetery Location
+    label: Location
 dfields:
   - variable: Section
     label: Section, Lot, or Row
@@ -915,37 +915,29 @@ More readable than nested patterns:
 {% endif %}
 ```
 
-### Migration from BASH Syntax
+### Common Template Patterns
 
-The following table shows how to convert from BASH-style patterns to Liquid:
+Here are common Liquid patterns used in source templates:
 
-| BASH Pattern | Liquid Pattern |
-|--------------|----------------|
-| `${variable}` | `{{ variable }}` |
-| `${variable:-default}` | `{{ variable \| default: "default" }}` |
-| `${variable:+text}` | `{% if variable %}text{% endif %}` |
-| `\$` | `$` |
+| Pattern | Description |
+|---------|-------------|
+| `{{ variable }}` | Replace with the value of the specified variable |
+| `{{ variable \| default: "default" }}` | Use default value if variable is empty |
+| `{% if variable %}text{% endif %}` | Conditional text inclusion |
+| `{{ variable \| escape }}` | HTML-escape the variable value |
 
 Note: Liquid rarely needs escaping. When needed, use `{{ "{{" }}` to produce `{{`.
 
-### Example Conversions
+### Example Template Pattern
 
-**BASH:**
-```
-${Cemetery}${Location:+ (${Location})}
-```
-
-**Liquid:**
 ```liquid
 {{ Cemetery }}{% if Location %} ({{ Location }}){% endif %}
 ```
 
-**BASH:**
-```
-${Type:+${Type}, }${Creator:+${Creator}, }${Website} (${Url}${Date:+ : accessed ${Date}})
-```
+This pattern outputs the cemetery name, and if a location is provided, adds it in parentheses.
 
-**Liquid:**
 ```liquid
 {% if Type %}{{ Type }}, {% endif %}{% if Creator %}{{ Creator }}, {% endif %}{{ Website }} ({{ Url }}{% if Date %} : accessed {{ Date }}{% endif %})
 ```
+
+This pattern conditionally includes type and creator if provided, always includes the website and URL, and optionally adds an access date.
